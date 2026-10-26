@@ -14,6 +14,8 @@ class GameAction {
 }
 
 class GameSession {
+  GameSession();
+
   int scene = 0;
   EndingType? ending;
   final Set<String> inventory = <String>{};
