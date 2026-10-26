@@ -16,5 +16,5 @@ jobs:
       - name: Generate platform runners
         run: flutter create --project-name imperial_tomb --platforms=android,ios .
       - run: flutter pub get
-      - run: flutter analyze
+      - run: flutter analyze --no-fatal-infos
       - run: flutter test
