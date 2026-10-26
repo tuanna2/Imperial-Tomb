@@ -1,0 +1,20 @@
+name: Flutter checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Generate platform runners
+        run: flutter create --project-name imperial_tomb --platforms=android,ios .
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
