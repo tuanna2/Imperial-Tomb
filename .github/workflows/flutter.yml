@@ -11,10 +11,15 @@ jobs:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
         with:
+          flutter-version: '3.47.8'
           channel: stable
           cache: true
-      - name: Generate platform runners
-        run: flutter create --project-name imperial_tomb --platforms=android,ios .
       - run: flutter pub get
-      - run: flutter analyze --no-fatal-infos
+      - run: dart format --output=none --set-exit-if-changed lib test
+      - run: flutter analyze
       - run: flutter test
+      - run: flutter build web --no-web-resources-cdn
+      - uses: actions/upload-artifact@v4
+        with:
+          name: imperial-tomb-web
+          path: build/web
