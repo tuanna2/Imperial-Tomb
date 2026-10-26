@@ -356,8 +356,8 @@ class _TombHomeState extends State<TombHome> {
                     ),
                     for (final hotspot in scene.hotspots)
                       Positioned(
-                        left: (hotspot.x * w).clamp(0, (w - 123).clamp(0, w)),
-                        top: (hotspot.y * h).clamp(0, (h - 42).clamp(0, h)),
+                        left: (hotspot.x * w).clamp(0.0, (w - 123).clamp(0.0, w)).toDouble(),
+                        top: (hotspot.y * h).clamp(0.0, (h - 42).clamp(0.0, h)).toDouble(),
                         child: HotspotButton(
                           hotspot: hotspot,
                           onTap: () => inspect(hotspot.id),

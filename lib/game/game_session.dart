@@ -332,7 +332,7 @@ class GameSession {
           'Mang cả sắc chỉ và thư Mai, đọc bản đồ nước, rồi dùng lối thoát phụ.',
         ],
     ];
-    return suggestions.first[tier.clamp(0, 1)];
+    return suggestions.first[tier > 0 ? 1 : 0];
   }
 
   Map<String, dynamic> toMap() => {
