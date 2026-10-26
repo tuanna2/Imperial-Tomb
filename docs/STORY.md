@@ -1,45 +1,90 @@
-# IMPERIAL TOMB — Lăng Mộ Không Tên
+# Imperial Tomb — narrative and puzzle architecture, v0.2
 
-Original Vietnamese escape-room mystery. This story, its clues and puzzle solutions are original and are not taken from IzumiArtisan games.
+## Premise and truth
 
-## One-sentence pitch
-A conservator follows her vanished sister into a sealed imperial tomb and discovers that the royal mausoleum is actually a flood-diversion machine built to erase a historical crime.
+An, a conservator, follows her vanished sister Mai into a sealed royal tomb. Mai's last warning is “Đừng mở cửa của nhà vua.” The apparent escape door is a flood release; the mausoleum conceals a hydraulic station.
 
-## POV and tone
-First person: An, a conservator specializing in ancient mechanical artifacts. Quiet dread, tactile inspection, no supernatural explanation. Few spoken lines. Each inspected object changes what the player believes.
+The court once diverted a flood onto Đông Lâm, Vạn Khê and Hạ Thủy to save the capital, then erased their names and disguised the station as a tomb. Engineers left a safe alternate river channel. Mai found the evidence, left tools and a waterproof box, and entered the eastern service tunnels. There is no supernatural explanation.
 
-## Locked truth (author reference)
-Decades earlier, the court secretly diverted a catastrophic flood onto three villages to save the imperial capital. Later it erased the villages from maps and rebranded the floodgate as the emperor's tomb. Engineers hid a secondary valve that could have routed the water into the old riverbed. Mai discovered the records and left a written warning for her younger sibling An.
+## Reveal ladder and pacing
 
-## Opening
-The narrator finds Mai's final audio: "Đừng mở cửa của nhà vua." A stone entrance shuts behind An. Deep under the tomb, water still moves.
-
-## Scenes
-1. TIỀN ĐIỆN — the false tomb antechamber. A celestial inscription clues a three-symbol mechanism, revealing the bronze stylus. A carved fleet contributes the middle digit of a distant lock. An oil lamp is obtainable.
-2. TÀNG THƯ — a ledger contains the outer two digits of the chest code. Opening the chest reveals the imperial jade seal and the incriminating decree. The oil lamp illuminates a hidden route on a soot-darkened mural; the stylus opens an alcove and reveals Mai's letter.
-3. TINH ĐIỆN — an astronomical machine accepts the stylus and the symbolic sequence from the mural, yielding the valve wheel. A canal map makes the fate of three erased villages legible.
-4. THỦY MÔN — the jade seal grants access. There is an unsafe main release, a safe secondary flood diversion, and a narrow service exit. The outcome reflects the player's knowledge and choices.
-
-## Narrative reveal ladder
-- Initially: an emperor's tomb, perhaps a curse.
-- First reversal: the objects are not funerary but administrative.
-- Second reversal: the chest contains evidence of murder by engineered flood, not treasure.
-- Third reversal: the words "tomb" and "escape" are deliberate misdirection; the door is a floodgate.
-- Final action: the player must physically reroute the water and preserve the records before leaving.
-
-## Fair-play clue matrix
-| Puzzle | Clue available before lock | Interaction | Reward |
+| Act | Space | Player's belief changes | Action and intended time |
 | --- | --- | --- | --- |
-| Three figures | Stone inscription: Sun → Mountain → Moon | Tap symbols in exact order | Bronze stylus |
-| Three digits | Ledger says fleet I = 4, fleet III = 1; stele says fleet II = 2 | Enter 421 | Jade seal, imperial decree |
-| Star rings | Lamp reveals mural: Moon → River → Sun; stylus fits axis | Tap sequence | Bronze valve wheel |
-| Hidden alcove | Narrow metal latch visible | Select stylus and tap | Mai's letter |
-| Canal diversion | Canal map shows old river; Mai's letter warns about main door | Select valve wheel and tap side valve | Safe redirected water |
+| I | Tiền điện / Tàng thư | A tomb contains water ledgers and royal administration instead of burial goods. | Oath lock, cross-room ledger, restoration: 8–12 min |
+| II | Giếng trời / Công phòng | Mai was here recently and deliberately protected tools from water. | Lotus, rope assembly, retrieve and open tin, engineer rules: 10–15 min |
+| III | Tinh điện / archive return | Villages were erased from the map; the sky machine is a control interlock. | Restore mirror, align light, take rubbing, install axis: 12–20 min |
+| IV | Workshop / Thủy môn | Escaping and preventing another flood are separate choices. | Balance, repair pipes, assemble wheel, regulate pressure: 10–20 min |
 
-## Three endings
-- BAD — open the main floodgate before diversion. The villages flood again.
-- ORDINARY — use the service exit without both diverting the water and carrying the necessary evidence. An survives; the truth remains buried.
-- TRUE — read the canal map, collect both imperial decree and Mai's letter, divert water with the valve wheel, and leave through the service exit. An returns with proof, with Mai's fate left open for a sequel.
+These are design allocations, **not measured playtest results**. Target 40–70 minutes without solutions. No timers, random locks, repeated key collection or forced waits pad the duration. Returning to rooms is useful because new tools reveal new information.
 
-## Future chapters
-Phase 2 should expand Mai's whereabouts and the eastern service tunnels, increase room viewpoints, add combined items, environmental audio and hand-painted backgrounds. Do not substitute arbitrary puzzle codes for evidence-based deductions.
+## Dependency graph
+
+```mermaid
+flowchart TD
+  Oath["Stele + oath lock"] --> Stylus["Reusable bronze stylus"]
+  Ledger["Stele + ledger: 421"] --> Seal["Jade seal + decree"]
+  Seal --> Observatory["Observatory access"]
+  Lotus["Lotus directions + rope"] --> Hook["Hooked rope"]
+  Hook --> Tin["Retrieve waterproof tin"]
+  Stylus --> Key["Open tin: key + cloth"]
+  Tin --> Key
+  Key --> Workshop["Workshop + engineering plan"]
+  Workshop --> Balance["Counterweights: 2, 5, 3"]
+  Balance --> Pump["Wrench + connected pipes"]
+  Pump --> Gate["Drained floodgate bridge"]
+  Key --> Cloth["Cloth + lamp oil"]
+  Stylus --> Mirror["Remove tarnished mirror"]
+  Cloth --> Clean["Polish mirror"]
+  Mirror --> Clean
+  Clean --> Reflect["Install and align: 2, 4, 1"]
+  Workshop --> Reflect
+  Observatory --> Reflect
+  Reflect --> Names["Read map + take rubbing"]
+  Reflect --> Stars["Release orrery interlock"]
+  Mural["Brush + lamp: mural route"] --> Stars
+  Stylus --> Stars
+  Stars --> Wheel["Core + cabinet handle"]
+  Balance --> Wheel
+  Wheel --> Pressure["Install wheel + 3, 1, 2"]
+  Gate --> Pressure
+  Letter["Stylus opens Mai's letter"] --> Pressure
+  Pressure --> True["Divert + carry full evidence + exit"]
+  Names --> True
+  Seal --> True
+  Letter --> True
+```
+
+## Fair-play clues
+
+| Mechanism | Available clue | Solution / physical rule | Reward |
+| --- | --- | --- | --- |
+| Stone oath | Stele names three figures in order | Sun → Mountain → Moon | Bronze stylus |
+| Ledger chest | Fleet I and III in archive; Fleet II on stele | 421 in I–II–III order | Seal, decree |
+| Lotus relief | Roots south, bud east, stem north, leaf west | South → East → North → West | Iron hook |
+| Mirror rings | Engineer plan specifies outer, middle, inner; eight clockwise marks | 2–4–1 | Erased map, safety interlock |
+| Orrery | Brush then lamp reveal a route on mural; axis missing | Install stylus; Moon → River → Sun | Valve core |
+| Counterweights | Middle = left + right; right = left + 1; total = 10 | 2–5–3 (unique in 1..6) | Handle, wrench |
+| Pipe network | Drawer diagram describes full route | Six connected tiles; no leaks; top-left inlet, bottom-left outlet | Drain bridge |
+| Side pressure | Mai's letter explicitly labels each branch | Old river 3; settling basin 1; counterflow 2 | Safe diversion |
+
+Critical markings and clue symbols are rendered natively. Decorative image details never supply a mandatory code. The pipe solver checks topology rather than a hardcoded orientation array; equivalent straight-pipe half-turns are accepted.
+
+## Recipes and conservation
+
+- Rope + hook → hooked rope (consume both parts).
+- Sealed tin + stylus → key and dry cloth (consume tin, retain stylus).
+- Dry cloth + lamp → oiled cloth (consume dry cloth, retain lamp).
+- Tarnished mirror + oiled cloth → polished mirror (consume both).
+- Valve core + handle → working wheel (consume both).
+
+Polished mirror and wheel are consumed when installed, with durable flags allowing their controls to reopen. Rice paper is consumed only after the illuminated map is ready and awards a permanent rubbing. Wrong tools and wrong combinations consume nothing.
+
+## Knowledge and endings
+
+The map's names become readable after alignment; paper cannot produce a rubbing before that. The player can operate a code known from another source without an artificial “must read clue first” lock, but physically missing tools and unreleased interlocks block operation.
+
+- **Bad:** pull the main release before safe diversion.
+- **Ordinary:** leave without all rescue/evidence conditions.
+- **True:** divert water, read the revealed canal map, and carry decree, Mai's letter and village-name rubbing. Mai's eastern tunnel drawing sets up a future chapter.
+
+The main release and departure have confirmation dialogs. Ending state freezes domain mutations. A new journey asks before replacing an existing save.

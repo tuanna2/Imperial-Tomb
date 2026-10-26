@@ -1,53 +1,51 @@
 # Imperial Tomb — Lăng Mộ Không Tên
 
-A playable, original Flutter point-and-click escape-room mini-game in Vietnamese. Inspired by **genre mechanics** in IzumiArtisan's Rime, Garden and Haven, but with entirely original story, illustrations, code, clues and solutions.
+An original offline Flutter escape mystery in Vietnamese. A conservator follows her missing sister into a royal tomb and discovers a hydraulic machine built to hide a historical crime. Inspired by the quiet exploration and tactile puzzle design of Rime / Garden; story, rooms, clues and solutions are original.
 
-## Playable prototype
-- Four connected scenes: Tiền Điện, Tàng Thư, Tinh Điện, Thủy Môn
-- Inspectable hotspots, inventory selection and item-use interactions
-- Three linked puzzles (symbols, a 3-digit ledger lock and a star mechanism)
-- Three endings (bad, ordinary and true), plus clue notebook and two-tier hints
-- Autosave/continue via shared_preferences, full offline play
-- Scalable original art drawn by Flutter CustomPainter
-- Automated state / endings tests and GitHub Actions checks
+## Version 0.2: art and deeper exploration
 
-This is a **vertical slice**, not a finished store-release game. Scene art is stylized vector concept art; it should later be replaced with professionally illustrated scenes while retaining hotspot IDs.
+- **Six illustrated rooms:** Tiền điện, Tàng thư, Giếng trời, Tinh điện, Công phòng and Thủy môn.
+- **25 closeups:** tap an object to zoom in, inspect its details and operate its mechanism.
+- **Eight mechanisms:** ordered stone seals, ledger lock, compass lotus, concentric mirror rings, orrery, constrained counterweights, a connected pipe network and three-channel pressure regulation.
+- **Five item recipes**, reusable tools, environmental restoration and persistent installed parts.
+- Evidence crosses rooms: clean and illuminate a mural, restore a mirror, reveal erased names, take a rubbing, repair a pump, assemble a wheel and safely reroute water.
+- Three endings, two-tier context hints, an evidence journal and autosave including partial mechanism positions. Existing v1 saves migrate.
+- Original 1024 × 1536 backgrounds, optimized locally bundled WebP images, unobtrusive optional hotspot markers and exact code-rendered puzzle markings.
+
+First-play pacing **target: 40–70 minutes**, pending human playtests. This is a playable expanded chapter, not a store-ready release. No backend, account, tracking, ads or runtime image downloads.
+
+| Room view | Inspecting a mechanism |
+| --- | --- |
+| ![Room](docs/screenshots/room.webp) | ![Closeup](docs/screenshots/closeup.webp) |
 
 ## Run
 
-Install Flutter SDK and the Android/iOS tooling. Then run:
+Install Flutter and the device tooling, then generate platform runners once:
 
-    flutter create --project-name imperial_tomb --platforms=android,ios .
-    flutter pub get
-    flutter run
+```sh
+flutter create --project-name imperial_tomb --platforms=android,ios,web .
+flutter pub get
+flutter run
+```
 
-Generated platform runner directories are not committed yet. The command above generates them locally. For iOS builds, macOS with Xcode/signing is required; Android devices need USB debugging enabled.
+For iOS use macOS, Xcode and signing. Android physical devices require USB debugging. Platform runner directories are generated locally; source, assets and game rules are committed.
 
-Check code:
+```sh
+flutter analyze
+flutter test
+flutter build web --no-web-resources-cdn
+```
 
-    flutter analyze
-    flutter test
+## Play
 
-Build Android debug APK:
+Tap room objects to enter closeups. The hand/eye button reveals targets. Select an inventory item then tap **DÙNG…** in the closeup to apply it. Hold an item or tap its info button to examine it. To combine, select an item, tap **GHÉP**, then select the other component. Dials advance by tapping; **VẬN HÀNH** tests them. The journal records clues; the first hint nudges, the second gives the solution.
 
-    flutter build apk --debug
+## Design and validation
 
-The game has no backend, account system, tracking, ads or online assets.
+- [Full walkthrough and endings](docs/WALKTHROUGH.md) — spoilers
+- [Story, dependency graph and pacing](docs/STORY.md)
+- [Art direction, asset states and validation notes](docs/ART_AND_QA.md)
+- [Reproducible illustration prompts](docs/art-prompts.json)
+- [Pure game rules](lib/game/game_session.dart)
 
-## Controls
-Tap the golden labeled hotspots, navigate using the room strip, and tap an inventory object before tapping its target in the scene. Journal replays discovered evidence; the lightbulb provides increasingly direct hints. Progress saves automatically.
-
-## Story and solutions
-- [Original narrative / reveal ladder / clue dependencies](docs/STORY.md)
-- [Full walkthrough and three endings](docs/WALKTHROUGH.md)
-- [Pure game engine](lib/game/game_session.dart)
-- [Room definitions](lib/game/content.dart)
-- [Original room art](lib/ui/tomb_art.dart)
-
-## Next improvements
-1. Original detailed static art for 8–12 additional viewpoints
-2. Close-up panels, drag/combine inventory, sound and puzzle animations
-3. Accessibility, localization and device integration testing
-4. Release signing, privacy/store metadata and optional monetization
-
-Source code and original game content are reserved to the repository owner until they select a license.
+Source and original game content are reserved to the repository owner until they select a license.

@@ -1,0 +1,19 @@
+{
+  "name": "Imperial Tomb — Lăng Mộ Không Tên",
+  "short_name": "Imperial Tomb",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#161A18",
+  "theme_color": "#161A18",
+  "description": "An original offline escape mystery.",
+  "orientation": "portrait-primary",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "icons/tomb.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
